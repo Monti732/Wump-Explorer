@@ -1,0 +1,1 @@
+java -cp "../output/app.jar:../lib/kotlinx-cli-jvm-0.3.6.jar" MainKt -n aboba
