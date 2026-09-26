@@ -1,0 +1,1 @@
+kotlinc ../src/* -cp ../lib/* -include-runtime -d ../output/app.jar
