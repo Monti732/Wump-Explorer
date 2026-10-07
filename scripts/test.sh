@@ -1,0 +1,45 @@
+#!/bin/bash
+OK=0; TOTAL=10
+
+run_test() {
+    ./run.sh "$@" > /dev/null 2>&1
+    local code=$?
+    if [ $code -eq $expected ]; then
+        echo "$name: OK"
+        OK=$((OK + 1))
+    else
+        echo "$name: FAIL ($expected -> $code)"
+    fi
+}
+
+name="Test 1 (Success)"; expected=0
+run_test -l alice -p qwerty -a read -r A.B -v 10
+
+name="Test 2 (Help Flag)"; expected=1
+run_test -h
+
+name="Test 3 (Missing Args)"; expected=1
+run_test -l alice
+
+name="Test 4 (Wrong Pass)"; expected=2
+run_test -l alice -p wrong_pass -a read -r A.B -v 10
+
+name="Test 5 (Wrong Login)"; expected=3
+run_test -l unknown -p qwerty -a read -r A.B -v 10
+
+name="Test 6 (Wrong Action)"; expected=4
+run_test -l alice -p qwerty -a delete -r A.B -v 10
+
+name="Test 7 (No Access)"; expected=5
+run_test -l bob -p 12345 -a read -r A.B -v 10
+
+name="Test 8 (Wrong Resource)"; expected=6
+run_test -l alice -p qwerty -a read -r A.UNKNOWN -v 10
+
+name="Test 9 (Invalid Volume)"; expected=7
+run_test -l alice -p qwerty -a read -r A.B -v text
+
+name="Test 10 (Volume Exceeded)"; expected=8
+run_test -l alice -p qwerty -a read -r A.B.C -v 999
+
+echo "Total: $OK/$TOTAL"
