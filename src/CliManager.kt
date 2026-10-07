@@ -8,7 +8,7 @@ class CliManager {
       showHelpAndExit()
     }
 
-    val parser = ArgParser("app.jar")
+    val parser = ArgParser("Wump Explorer")
     val loginOpt = parser.option(ArgType.String, "login", "l", "User's login.")
     val passwordOpt = parser.option(ArgType.String, "password", "p", "User's password.")
     val actionOpt = parser.option(ArgType.String, "action", "a", "User's action.")

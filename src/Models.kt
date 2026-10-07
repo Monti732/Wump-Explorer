@@ -34,6 +34,11 @@ object Database {
             login = "bob",
             hash = "e1f114c42c6a926c821b0f8ffe49b38f6b28f29dd2574869cd72455cb6253ab5",
             salt = "salt2"
+        ),
+        User(
+            login = "aboba",
+            hash = "37ef143ac81c06d76b9ebf52d70bda466402af15cad6af6739df7b65aab3ca88",
+            salt = "salt3"
         )
     )
 
@@ -47,6 +52,7 @@ object Database {
 
     val permissions = listOf(
         Permission(login = "alice", resource = "A", action = Action.READ),
-        Permission(login = "bob", resource = "A.B", action = Action.WRITE)
+        Permission(login = "bob", resource = "A.B", action = Action.WRITE),
+        Permission(login = "aboba", resource = "A", action = Action.READ)
     )
 }
