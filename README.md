@@ -18,5 +18,5 @@
    ```
 **Ручной запуск приложения:**
    ```bash
-   ./run.sh -l alice -p qwerty -a read -r A.B -v 10
+   ./run.sh -l aboba -p 1234 -a read -r A.B.C -v 10
    ```
