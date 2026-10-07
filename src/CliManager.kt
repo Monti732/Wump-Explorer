@@ -4,13 +4,8 @@ import kotlin.system.exitProcess
 
 class CliManager {
   fun parseArguments(args: Array<String>): CliOptions? {
-    if (args.contains("-h") || args.contains("--help")) {
-      val parser = ArgParser("app.jar")
-      registerAllOptions(parser)
-      try {
-        parser.parse(args)
-      } catch (e: Exception) {}
-      exitProcess(1) // Справка запрошена
+    if (args.contains("-h") || args.contains("--help") || args.isEmpty()) {
+      showHelpAndExit()
     }
 
     val parser = ArgParser("app.jar")
@@ -40,20 +35,15 @@ class CliManager {
     return CliOptions(login, password, action, resource, volume)
   }
 
-  private fun registerAllOptions(parser: ArgParser) {
-    parser.option(ArgType.String, "login", "l", "User's login.")
-    parser.option(ArgType.String, "password", "p", "User's password.")
-    parser.option(ArgType.String, "action", "a", "User's action.")
-    parser.option(ArgType.String, "resource", "r", "Requested resource name.")
-    parser.option(ArgType.String, "volume", "v", "Volume of requested resource.")
-  }
-
   private fun showHelpAndExit(): Nothing {
-    val parser = ArgParser("app.jar")
-    registerAllOptions(parser)
-    try {
-      parser.parse(arrayOf("-h"))
-    } catch (e: Exception) {}
+    println("Usage: app.jar options")
+    println("Options:")
+    println("    --login, -l -> User's login. (String)")
+    println("    --password, -p -> User's password. (String)")
+    println("    --action, -a -> User's action. (String)")
+    println("    --resource, -r -> Requested resource name. (String)")
+    println("    --volume, -v -> Volume of requested resource. (Int)")
+    println("    --help, -h -> Usage info")
     exitProcess(1)
   }
 }
