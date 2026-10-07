@@ -25,8 +25,16 @@ object Database {
     // Для alice: пароль "qwerty", соль "salt1". Хэш вычислен заранее
     // Для bob: пароль "12345", соль "salt2". Хэш вычислен заранее
     val users = listOf(
-        User(login = "alice", hash = "4c6d9d4370211181f62c0709b407421f156d967e81255e2d1d4511d5f3d4cb80", salt = "salt1"),
-        User(login = "bob", hash = "cd817887e2b6a9539d09c25d8a0c20a4d4b312b91953eb6368d40e32f4185f26", salt = "salt2")
+        User(
+            login = "alice",
+            hash = "077317626a29b193cf722eb4ac84e22ccd50a69e2d88072c1f3b33b154cfc9b8",
+            salt = "salt1"
+        ),
+        User(
+            login = "bob",
+            hash = "e1f114c42c6a926c821b0f8ffe49b38f6b28f29dd2574869cd72455cb6253ab5",
+            salt = "salt2"
+        )
     )
 
     // Список существующих ресурсов и их лимиты объема (целые числа)

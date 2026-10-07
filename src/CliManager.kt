@@ -2,12 +2,14 @@ import kotlinx.cli.ArgParser
 import kotlinx.cli.ArgType
 import kotlin.system.exitProcess
 
-object CliManager {
+class CliManager {
   fun parseArguments(args: Array<String>): CliOptions? {
     if (args.contains("-h") || args.contains("--help")) {
       val parser = ArgParser("app.jar")
       registerAllOptions(parser)
-      parser.parse(args)
+      try {
+        parser.parse(args)
+      } catch (e: Exception) {}
       exitProcess(1) // Справка запрошена
     }
 
@@ -49,7 +51,9 @@ object CliManager {
   private fun showHelpAndExit(): Nothing {
     val parser = ArgParser("app.jar")
     registerAllOptions(parser)
-    parser.parse(arrayOf("-h"))
+    try {
+      parser.parse(arrayOf("-h"))
+    } catch (e: Exception) {}
     exitProcess(1)
   }
 }

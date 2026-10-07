@@ -1,7 +1,7 @@
 import kotlin.system.exitProcess
 
 fun main(args: Array<String>) {
-  val options = CliManager.parseArguments(args) ?: return
+  val options = CliManager().parseArguments(args) ?: return
 
   val login = options.login
   val password = options.password
